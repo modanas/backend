@@ -11,6 +11,7 @@ let storage;
 // Check if Cloudinary credentials are configured and are not the placeholder 'food-del'
 const isCloudinaryConfigured =
   process.env.CLOUDINARY_CLOUD_NAME &&
+  process.env.CLOUDINARY_CLOUD_NAME !== "food-del" &&
   process.env.CLOUDINARY_API_KEY &&
   process.env.CLOUDINARY_API_SECRET;
 
