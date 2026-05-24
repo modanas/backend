@@ -1,5 +1,6 @@
 import foodModel from "../models/foodModel.js";
 import fs from "fs";
+import foods from "../config/seedData.js";
 
 //add food item
 
@@ -55,4 +56,16 @@ const removeFood = async (req, res) => {
 	}
 };
 
-export {addFood, listFood, removeFood}
+// seed food database with default products
+const seedFood = async (req, res) => {
+	try {
+		await foodModel.deleteMany({});
+		await foodModel.insertMany(foods);
+		res.json({ success: true, message: "Database seeded successfully with default products!" });
+	} catch (error) {
+		console.log(error);
+		res.json({ success: false, message: "Failed to seed database" });
+	}
+};
+
+export {addFood, listFood, removeFood, seedFood}
